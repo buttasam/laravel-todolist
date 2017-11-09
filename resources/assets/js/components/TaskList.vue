@@ -23,7 +23,7 @@
 
                     <div class="btn-group pull-right">
                         <button v-if="!task.done" @click="markAsDoneTask(task.id)" class="btn btn-warning btn-xs">Done</button>
-                        <button @click="deleteTask(task.id)" class="btn btn-danger btn-xs pull-right">Delete</button>
+                        <button v-if="task.done" @click="deleteTask(task.id)" class="btn btn-danger btn-xs pull-right">Delete</button>
                     </div>
                 </li>
             </ul>

@@ -43027,18 +43027,20 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger btn-xs pull-right",
-                    on: {
-                      click: function($event) {
-                        _vm.deleteTask(task.id)
-                      }
-                    }
-                  },
-                  [_vm._v("Delete")]
-                )
+                task.done
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-xs pull-right",
+                        on: {
+                          click: function($event) {
+                            _vm.deleteTask(task.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  : _vm._e()
               ])
             ])
           })
