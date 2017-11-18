@@ -5,7 +5,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Wellcome page</div>
+                    <div class="panel-heading">
+                        @if(Auth::user() && Auth::user()->hasRole('admin'))
+                            Logged as admin
+                        @else
+                            Wellcome user
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
