@@ -18,7 +18,7 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        {!! Form::open() !!}
+                        {!! Form::open(['action' => 'HomeController@saveList', 'method' => 'POST']) !!}
 
                             <div class="form-group">
                                 <label for="title">Title</label>
@@ -28,7 +28,7 @@
                                 <label for="description">Description</label>
                                 {{Form::textarea('description', '', ['class' => 'form-control', 'rows' => '3'])}}
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                            {{Form::submit('Save', ['class' => 'btn btn-primary btn-lg'])}}
                         {!! Form::close() !!}
                     </div>
                 </div>

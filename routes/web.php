@@ -33,3 +33,5 @@ Route::prefix('api')->group(function() {
     Route::get('tasks/markAsDone/{id}','TaskController@markAsDone');
 });
 
+
+Route::post('/saveList', 'HomeController@saveList');
