@@ -18,18 +18,18 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <form>
+                        {!! Form::open() !!}
+
                             <div class="form-group">
-                                <label for="exampleInputEmail1">List name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                       aria-describedby="emailHelp">
+                                <label for="title">Title</label>
+                                {{Form::text('title', '' , ['class' => 'form-control'])}}
                             </div>
                             <div class="form-group">
-                                <label for="exampleTextarea">Description</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                <label for="description">Description</label>
+                                {{Form::textarea('description', '', ['class' => 'form-control', 'rows' => '3'])}}
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg">Save</button>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
 
