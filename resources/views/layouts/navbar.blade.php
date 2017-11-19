@@ -18,12 +18,6 @@
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                @auth
-                &nbsp;<li><a href="{{ url('tasklist') }}">Task list</a></li>
-                @endauth
-            </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

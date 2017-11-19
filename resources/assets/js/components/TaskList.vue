@@ -14,15 +14,19 @@
             </form>
             <h4>All Tasks</h4>
             <ul class="list-group">
-                <li class="list-group-item list-group-item-warning" v-if='list.length === 0'>There are no tasks yet!</li>
+                <li class="list-group-item list-group-item-warning" v-if='list.length === 0'>There are no tasks yet!
+                </li>
                 <li class="list-group-item" v-for="(task, index) in list">
 
                     <span v-if="task.done"><strike>{{ task.body }}</strike></span>
                     <span v-else>{{ task.body }}</span>
 
                     <div class="btn-group pull-right">
-                        <button v-if="!task.done" @click="markAsDoneTask(task.id)" class="btn btn-warning btn-xs">Done</button>
-                        <button v-if="task.done" @click="deleteTask(task.id)" class="btn btn-danger btn-xs pull-right">Delete</button>
+                        <button v-if="!task.done" @click="markAsDoneTask(task.id)" class="btn btn-warning btn-xs">Done
+                        </button>
+                        <button v-if="task.done" @click="deleteTask(task.id)" class="btn btn-danger btn-xs pull-right">
+                            Delete
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -32,12 +36,16 @@
 </template>
 <script>
     export default {
+
+        props: ['todolist'],
+
         data() {
             return {
                 list: [],
                 task: {
                     id: '',
-                    body: ''
+                    body: '',
+                    todolist: '',
                 }
             };
         },
@@ -48,12 +56,13 @@
 
         methods: {
             fetchTaskList() {
-                axios.get('/laravel-todolist/api/tasks').then((res) => {
+                axios.get('/laravel-todolist/api/tasks/' + this.todolist).then((res) => {
                     this.list = res.data;
                 });
             },
 
             createTask() {
+                this.task.todolist = this.todolist;
                 axios.post('/laravel-todolist/api/tasks', this.task)
                     .then((res) => {
                         this.task.body = '';

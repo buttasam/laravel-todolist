@@ -20,8 +20,9 @@ Auth::routes();
 Route::get('/tasklist/{listId}', 'HomeController@tasklist');
 
 Route::prefix('api')->group(function() {
-    Route::resource('tasks', 'TaskController');
+    Route::get('tasks/{listId}','TaskController@index');
     Route::get('tasks/markAsDone/{id}','TaskController@markAsDone');
+    Route::resource('tasks', 'TaskController');
 });
 
 

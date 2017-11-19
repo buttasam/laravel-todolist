@@ -42879,14 +42879,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['todolist'],
+
     data: function data() {
         return {
             list: [],
             task: {
                 id: '',
-                body: ''
+                body: '',
+                todolist: ''
             }
         };
     },
@@ -42899,13 +42907,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchTaskList: function fetchTaskList() {
             var _this = this;
 
-            axios.get('/laravel-todolist/api/tasks').then(function (res) {
+            axios.get('/laravel-todolist/api/tasks/' + this.todolist).then(function (res) {
                 _this.list = res.data;
             });
         },
         createTask: function createTask() {
             var _this2 = this;
 
+            this.task.todolist = this.todolist;
             axios.post('/laravel-todolist/api/tasks', this.task).then(function (res) {
                 _this2.task.body = '';
                 _this2.edit = false;
@@ -42998,7 +43007,7 @@ var render = function() {
             ? _c(
                 "li",
                 { staticClass: "list-group-item list-group-item-warning" },
-                [_vm._v("There are no tasks yet!")]
+                [_vm._v("There are no tasks yet!\n            ")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -43020,7 +43029,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Done")]
+                      [_vm._v("Done\n                    ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -43035,7 +43044,11 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Delete")]
+                      [
+                        _vm._v(
+                          "\n                        Delete\n                    "
+                        )
+                      ]
                     )
                   : _vm._e()
               ])

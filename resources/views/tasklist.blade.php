@@ -18,7 +18,7 @@
             </div>
 
             <div id='app'>
-                <task-list></task-list>
+                <task-list :todolist="{{$listId}}"></task-list>
             </div>
         </div>
     </div>

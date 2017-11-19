@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth');
+        $this->middleware('auth');
     }
 
 
@@ -23,9 +23,12 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($listId)
     {
-        return Task::orderBy('done')->latest()->where(['user_id' =>  Auth::user()->id])->get();
+        return Task::orderBy('done')->latest()->where([
+            'user_id' => Auth::user()->id,
+            'tasklist_id' => $listId
+        ])->get();
     }
 
     /**
@@ -41,22 +44,27 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'body' => 'required|max:500'
+            'body' => 'required|max:500',
+            'todolist' => 'required'
         ]);
 
-        return Task::create(['body' => request('body'), 'user_id' =>  Auth::user()->id, 'tasklist_id' => '1']); // TODO
+        return Task::create([
+            'body' => request('body'),
+            'user_id' => Auth::user()->id,
+            'tasklist_id' => request('todolist')
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Task $task
      * @return \Illuminate\Http\Response
      */
     public function show(Task $task)
@@ -67,7 +75,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Task $task
      * @return \Illuminate\Http\Response
      */
     public function edit(Task $task)
@@ -78,8 +86,8 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Task $task
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Task $task)
@@ -101,7 +109,8 @@ class TaskController extends Controller
     }
 
 
-    public function markAsDone($id) {
+    public function markAsDone($id)
+    {
         $task = Task::findOrFail($id);
         $task->done = true;
 

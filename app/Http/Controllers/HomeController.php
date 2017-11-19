@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function tasklist($listId) {
        $tasklist = TaskList::findOrFail($listId);
 
-        return view('tasklist')->with(['tasklist' => $tasklist]);
+        return view('tasklist')->with(['tasklist' => $tasklist, 'listId' => $listId]);
     }
 
     public function saveList(Request $request)
