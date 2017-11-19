@@ -42879,7 +42879,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42900,14 +42899,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchTaskList: function fetchTaskList() {
             var _this = this;
 
-            axios.get('api/tasks').then(function (res) {
+            axios.get('/laravel-todolist/api/tasks').then(function (res) {
                 _this.list = res.data;
             });
         },
         createTask: function createTask() {
             var _this2 = this;
 
-            axios.post('api/tasks', this.task).then(function (res) {
+            axios.post('/laravel-todolist/api/tasks', this.task).then(function (res) {
                 _this2.task.body = '';
                 _this2.edit = false;
                 _this2.fetchTaskList();
@@ -42918,7 +42917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteTask: function deleteTask(id) {
             var _this3 = this;
 
-            axios.delete('api/tasks/' + id).then(function (res) {
+            axios.delete('/laravel-todolist/api/tasks/' + id).then(function (res) {
                 _this3.fetchTaskList();
             }).catch(function (err) {
                 return console.error(err);
@@ -42928,7 +42927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this4 = this;
 
             console.log("marked " + id);
-            axios.get('api/tasks/markAsDone/' + id).then(function (res) {
+            axios.get('/laravel-todolist/api/tasks/markAsDone/' + id).then(function (res) {
                 _this4.fetchTaskList();
             }).catch(function (err) {
                 return console.error(err);
@@ -42947,8 +42946,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-      _c("h1", [_vm._v("My Tasks")]),
-      _vm._v(" "),
       _c("h4", [_vm._v("New Task")]),
       _vm._v(" "),
       _c(

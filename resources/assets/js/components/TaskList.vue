@@ -3,7 +3,6 @@
 
         <div class="col-md-8 col-md-offset-2">
 
-            <h1>My Tasks</h1>
             <h4>New Task</h4>
             <form action="#" @submit.prevent="createTask()">
                 <div class="input-group">
@@ -49,13 +48,13 @@
 
         methods: {
             fetchTaskList() {
-                axios.get('api/tasks').then((res) => {
+                axios.get('/laravel-todolist/api/tasks').then((res) => {
                     this.list = res.data;
                 });
             },
 
             createTask() {
-                axios.post('api/tasks', this.task)
+                axios.post('/laravel-todolist/api/tasks', this.task)
                     .then((res) => {
                         this.task.body = '';
                         this.edit = false;
@@ -65,7 +64,7 @@
             },
 
             deleteTask(id) {
-                axios.delete('api/tasks/' + id)
+                axios.delete('/laravel-todolist/api/tasks/' + id)
                     .then((res) => {
                         this.fetchTaskList()
                     })
@@ -74,7 +73,7 @@
 
             markAsDoneTask(id) {
                 console.log("marked " + id)
-                axios.get('api/tasks/markAsDone/' + id)
+                axios.get('/laravel-todolist/api/tasks/markAsDone/' + id)
                     .then((res) => {
                         this.fetchTaskList()
                     })

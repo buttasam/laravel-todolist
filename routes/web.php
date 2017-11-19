@@ -13,15 +13,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@wellcome');
 
 Auth::routes();
 
-Route::get('/tasklist', function() {
-    return view('tasklist');
-});
+Route::get('/tasklist/{listId}', 'HomeController@tasklist');
 
 Route::prefix('api')->group(function() {
     Route::resource('tasks', 'TaskController');

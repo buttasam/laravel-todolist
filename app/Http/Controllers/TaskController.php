@@ -50,7 +50,7 @@ class TaskController extends Controller
             'body' => 'required|max:500'
         ]);
 
-        return Task::create(['body' => request('body'), 'user_id' =>  Auth::user()->id]);
+        return Task::create(['body' => request('body'), 'user_id' =>  Auth::user()->id, 'tasklist_id' => '1']); // TODO
     }
 
     /**
